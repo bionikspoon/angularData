@@ -16,7 +16,8 @@ angular.module('angularDataApp', [
   'ngResource',
   'ngRoute',
   'ngSanitize',
-  'ngTouch'
+  'ngTouch',
+  'firebase'
 ])
 
   .config(function ($routeProvider) {
