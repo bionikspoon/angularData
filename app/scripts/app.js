@@ -31,8 +31,15 @@ angular.module('angularDataApp', [
       })
 
       .when('/login', {
-        templateUrl: 'views/login.html',
-        controller: 'LoginCtrl'
+        templateUrl: 'views/login.html', controller: 'LoginCtrl'
+      })
+
+      .when('/register', {
+        templateUrl: 'views/register.html', controller: 'RegisterCtrl'
+      })
+
+      .when('/meetings', {
+        templateUrl: 'views/meetings.html', controller: 'MeetingsCtrl'
       })
 
       .otherwise({

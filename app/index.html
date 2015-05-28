@@ -30,10 +30,8 @@
        ng-include="'views/nav.html'"></nav>
 </header>
 <div class="page">
-  <main class="cf">
-    <h1>Hello {{ name }}</h1>
-    <input ng-model="name"
-           placeholder="Enter your name" />
+  <main class="cf" ng-view>
+
   </main>
 </div>
 <!--<div ng-view=""></div>-->
@@ -57,6 +55,8 @@
 <script src="scripts/controllers/main.js"></script>
 <script src="scripts/controllers/about.js"></script>
 <script src="scripts/controllers/login.js"></script>
+<script src="scripts/controllers/register.js"></script>
+<script src="scripts/controllers/meetings.js"></script>
 <!-- endbuild -->
 </body>
 </html>
