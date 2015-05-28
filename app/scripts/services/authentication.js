@@ -11,7 +11,6 @@ angular.module('angularDataApp')
 
   .factory('Authentication',
   function ($firebase, $firebaseAuth, $location, FIREBASE_URL) {
-    console.log('Authentication Factory loaded');
     var ref = new Firebase(FIREBASE_URL);
     var authObj = $firebaseAuth(ref);
 

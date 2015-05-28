@@ -27,9 +27,16 @@
 <![endif]-->
 <header>
   <nav class="cf"
-       ng-include="'views/nav.html'"></nav>
+       ng-include="'views/nav.html'"
+       ng-controller="StatusCtrl"></nav>
 </header>
 <div class="page">
+  <div class="userinfo"
+       ng-controller="StatusCtrl"
+       ng-show="userEmail">
+    <span class="user">Hi {{ userEmail }}</span>
+    <a href="#">Logout</a>
+  </div>
   <main class="cf"
         ng-view>
 
@@ -62,6 +69,7 @@
 <script src="scripts/controllers/meetings.js"></script>
 <script src="scripts/services/authentication.js"></script>
 <script src="scripts/services/firebase_url.js"></script>
+<script src="scripts/controllers/status.js"></script>
 <!-- endbuild -->
 </body>
 </html>
