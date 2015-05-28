@@ -19,6 +19,12 @@ angular.module('angularDataApp')
         return authObj.$authWithPassword({
           email: user.email, password: user.password
         });
+      },
+
+      logout: function () {
+        return authObj.$unauth();
       }
+
+
     };
   });

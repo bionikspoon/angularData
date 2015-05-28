@@ -14,7 +14,6 @@ angular
   .controller('RegisterCtrl', function ($scope, $location, Authentication) {
 
     $scope.register = function () {
-      console.log($scope.user.email);
       $location.path('/meetings');
     };
   });
