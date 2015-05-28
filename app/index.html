@@ -20,10 +20,11 @@
 </head>
 <body>
 <!--[if lt IE 7]>
-<p class="browsehappy">You are using an <strong>outdated</strong> browser.
-                       Please <a href="http://browsehappy.com/">upgrade your
-                                                                browser</a> to
-                       improve your experience. </p>
+<p class="browsehappy">
+  You are using an <strong>outdated</strong> browser.
+  Please <a href="http://browsehappy.com/">upgrade your
+                                           browser</a> to
+  improve your experience. </p>
 <![endif]-->
 <header>
   <nav class="cf"
@@ -35,11 +36,11 @@
        ng-controller="StatusCtrl"
        ng-show="currentUser">
     <span class="user">Hi {{ currentUser.firstName }}</span>
-    <a href ng-click="logout()">Logout</a>
+    <a href
+       ng-click="logout()">Logout</a>
   </div>
   <main class="cf"
-        ng-view>
-  </main>
+        ng-view></main>
 </div>
 <!--<div ng-view=""></div>-->
 

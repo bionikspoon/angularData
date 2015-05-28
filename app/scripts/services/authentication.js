@@ -10,13 +10,22 @@
 angular.module('angularDataApp')
 
   .factory('Authentication',
-  function ($firebase, $firebaseAuth, $firebaseObject, $location,
+  function ($rootScope, $firebase, $firebaseAuth, $firebaseObject, $location,
     FIREBASE_URL) {
     var ref = new Firebase(FIREBASE_URL);
     var authObj = $firebaseAuth(ref);
 
-    return {
+    var factoryObject = {
       login: function (user) {
+        var userRef = new Firebase(FIREBASE_URL + '/users/' + user.uid);
+        var userObj = $firebaseObject(userRef);
+
+        userObj.$loaded()
+
+          .then(function () {
+            $rootScope.currentUser = userObj;
+          });
+
         return authObj.$authWithPassword({
           email: user.email, password: user.password
         });
@@ -34,20 +43,33 @@ angular.module('angularDataApp')
           .then(function (registeredUser) {
             var ref = new Firebase(FIREBASE_URL + '/users');
             var firebaseUsers = $firebaseObject(ref);
-            var userInfo = {
+            firebaseUsers[registeredUser.uid] = {
               date: Firebase.ServerValue.TIMESTAMP,
               registeredUser: registeredUser.uid,
               firstName: user.firstName,
               lastName: user.lastName,
               email: user.email
             };
-            firebaseUsers[registeredUser.uid] = userInfo;
             firebaseUsers.$save(registeredUser.uid);
 
           });
       },
 
-      authObj: authObj
+      authObj: authObj,
 
+      signedIn: function () {
+        return $rootScope.currentUser != null;
+      },
+
+      authUserObj: function (uid) { // TODO remove this
+        var userRef = new Firebase(FIREBASE_URL + '/users/' + uid);
+        return $firebaseObject(userRef);
+      }
     };
+
+    $rootScope.signedIn = function () {
+      return factoryObject.signedIn();
+    };
+    return factoryObject;
   });
+

@@ -1,31 +1,44 @@
 <section class="meetings cf">
-  <h1>Add Meetings</h1>
+  <div ng-hide="signedIn()"
+       class="sorry">
+    <h1>Sorry</h1>
 
-  <form class="formgroup addmeeting cf"
-        name="meetingsForm"
-        ng-submit="addMeeting()"
-        novalidate>
-    <div class="inputwrapper">
-      <input type="text"
-             name="meetingName"
-             placeholder="Meeting Name"
-             ng-model="meetingName"
-             ng-required="true" />
-    </div>
-    <button type="submit"
-            class="btn"
-            ng-disabled="meetingsForm.$invalid">+
-    </button>
+    <p>Only registered users can create and manage meetings.</p>
 
-  </form>
-  <h2>Your Meetings</h2>
-
-  <div class="meeting"
-       ng-repeat="(key, meeting) in meetings">
-    <button class="btn btn-delete tooltip"
-            ng-click="deleteMeeting(key)">
-      <span>Delete this meeting.</span>
-    </button>
-    <span class="text">{{ meeting.name }}</span>
+    <p>Please <a ng-href="#/register"
+                 ng-hide="currentUser">register</a> or <a ng-href="#/login">Login</a>.
+    </p>
   </div>
+  <div ng-show="signedIn()" class="displaymeetings">
+    <h1>Add Meetings</h1>
+
+    <form class="formgroup addmeeting cf"
+          name="meetingsForm"
+          ng-submit="addMeeting()"
+          novalidate>
+      <div class="inputwrapper">
+        <input type="text"
+               name="meetingName"
+               placeholder="Meeting Name"
+               ng-model="meetingName"
+               ng-required="true" />
+      </div>
+      <button type="submit"
+              class="btn"
+              ng-disabled="meetingsForm.$invalid">+
+      </button>
+
+    </form>
+    <h2>Your Meetings</h2>
+
+    <div class="meeting"
+         ng-repeat="(key, meeting) in meetings">
+      <button class="btn btn-delete tooltip"
+              ng-click="deleteMeeting(key)">
+        <span>Delete this meeting.</span>
+      </button>
+      <span class="text">{{ meeting.name }}</span>
+    </div>
+  </div>
+
 </section>
