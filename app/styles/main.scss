@@ -463,51 +463,43 @@ ul.awardslist li .btn-delete {
 nav {
   width: 100%;
   background: #EFC94C;
-}
-
-nav .table {
-  display: table; /* Allow the centering to work */
-  margin: 0 auto;
-}
-
-nav li.branding a {
-  font-size: 1.5em;
-  text-align: left;
-  background: #1E9382;
-  color: #A2CFA5;
-}
-
-nav ul {
-  width: 100%;
-  margin: 0 auto;
-}
-
-nav ul li {
-  float: left;
-  color: #145266;
-  font-family: Bree Serif, serif;
-}
-
-nav ul li.user {
-  background-color: #D24244;
-  color: #EFC94C;
-  font-family: Bree Serif, serif;
-}
-
-nav ul li.user.hello {
-  margin-left: 60px;
-  padding: 10px 15px;
-}
-
-nav ul li a {
-  float: left;
-  text-decoration: none;
-  padding: 10px 15px;
-}
-
-nav ul li a:hover {
-  background-color: #45B29D;
-  color: #E0E7AB;
+  .table {
+    display: table; /* Allow the centering to work */
+    margin: 0 auto;
+  }
+  li.branding a {
+    font-size: 1.5em;
+    text-align: left;
+    background: #1E9382;
+    color: #A2CFA5;
+  }
+  ul {
+    width: 100%;
+    margin: 0 auto;
+    li {
+      float: left;
+      color: #145266;
+      font-family: Bree Serif, serif;
+      &.user {
+        background-color: #D24244;
+        color: #EFC94C;
+        font-family: Bree Serif, serif;
+        &.hello {
+          margin-left: 60px;
+          padding: 10px 15px;
+        }
+      }
+      a {
+        float: left;
+        text-decoration: none;
+        padding: 10px 15px;
+        &:hover {
+          background-color: #45B29D;
+          color: #E0E7AB;
+        }
+      }
+    }
+  }
 }
 
 .userinfo {

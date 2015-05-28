@@ -1,1 +1,57 @@
-<p>This is the register view.</p>
+<section class="register">
+  <form name="registerForm"
+        novalidate
+        ng-submit="register()">
+    <h1>Register</h1>
+
+    <p>To access site features.</p>
+
+    <input type="firstName"
+           name="firstName"
+           placeholder="First Name"
+           autofocus
+           ng-model="user.firstName"
+           ng-required="true" />
+
+    <p class="error validationerror"
+       ng-show="registerForm.firstName.$invalid && registerForm.email.$touched ">
+      First Name is required. </p>
+
+    <input type="lastName"
+           name="lastName"
+           placeholder="Last Name"
+           autofocus
+           ng-model="user.lastName"
+           ng-required="true" />
+
+    <p class="error validationerror"
+       ng-show="registerForm.lastName.$invalid && registerForm.email.$touched ">
+      Last Name is required. </p>
+
+    <input type="email"
+           name="email"
+           placeholder="Email"
+           autofocus
+           ng-model="user.email"
+           ng-required="true" />
+
+    <p class="error validationerror"
+       ng-show="registerForm.email.$invalid && registerForm.email.$touched ">
+      Must be a valid email. </p>
+    <input type="password"
+           name="password"
+           placeholder="Password"
+           ng-model="user.password"
+           ng-required="true" />
+
+    <p class="error validationerror"
+       ng-show="registerForm.password.$invalid && registerForm.password.$touched ">
+      Password is required. </p>
+    <button type="submit"
+            class="btn"
+            ng-disabled="registerForm.$invalid">
+      Register
+    </button>
+    <p>or <a href="#/login">login</a></p>
+  </form>
+</section>

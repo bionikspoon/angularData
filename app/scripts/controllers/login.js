@@ -8,10 +8,12 @@
  * Controller of the angularDataApp
  */
 angular.module('angularDataApp')
-  .controller('LoginCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+
+  .controller('LoginCtrl', function ($scope, $location) {
+
+    $scope.login = function () {
+      console.log($scope.user.email);
+      $location.path('/meetings');
+    };
+
   });
