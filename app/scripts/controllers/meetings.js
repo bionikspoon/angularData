@@ -8,11 +8,15 @@
  * Controller of the angularDataApp
  */
 angular.module('angularDataApp').controller('MeetingsCtrl',
-  function ($scope, $firebaseArray) {
+  function ($scope, $rootScope, $firebaseArray, $firebaseObject, FIREBASE_URL) {
 
-    var ref = new Firebase('https://bionikspoon-attendance.firebaseio.com/meetings');
-
+    var ref = new Firebase(FIREBASE_URL + '/meetings');
     $scope.meetings = $firebaseArray(ref);
+    //$scope.meetingsObj = $firebaseObject(ref);
+
+    $scope.meetings.$watch(function (event) {
+      $rootScope.howManyMeetings = $scope.meetings.length;
+    });
 
     $scope.addMeeting = function () {
       $scope.meetings.$add({
