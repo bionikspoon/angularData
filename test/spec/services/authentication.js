@@ -1,18 +1,18 @@
 'use strict';
 
-describe('Service: authentication', function () {
+describe('Service: Authentication', function () {
 
   // load the service's module
   beforeEach(module('angularDataApp'));
 
   // instantiate service
-  var authentication;
-  beforeEach(inject(function (_authentication_) {
-    authentication = _authentication_;
+  var Authentication;
+  beforeEach(inject(function (_Authentication_) {
+    Authentication = _Authentication_;
   }));
 
   it('should do something', function () {
-    expect(!!authentication).toBe(true);
+    expect(!!Authentication).toBe(true);
   });
 
 });

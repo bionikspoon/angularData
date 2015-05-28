@@ -2,22 +2,24 @@
 
 /**
  * @ngdoc service
- * @name angularDataApp.authentication
+ * @name angularDataApp.Authentication
  * @description
- * # authentication
+ * # Authentication
  * Factory in the angularDataApp.
  */
 angular.module('angularDataApp')
-  .factory('authentication', function () {
-    // Service logic
-    // ...
 
-    var meaningOfLife = 42;
+  .factory('Authentication',
+  function ($firebase, $firebaseAuth, $location, FIREBASE_URL) {
+    console.log('Authentication Factory loaded');
+    var ref = new Firebase(FIREBASE_URL);
+    var authObj = $firebaseAuth(ref);
 
-    // Public API here
     return {
-      someMethod: function () {
-        return meaningOfLife;
+      login: function (user) {
+        return authObj.$authWithPassword({
+          email: user.email, password: user.password
+        });
       }
     };
   });

@@ -11,10 +11,7 @@ angular
 
   .module('angularDataApp')
 
-  .controller('RegisterCtrl', function ($scope, $firebaseAuth, $location) {
-    var ref = new Firebase('https://bionikspoon-attendance.firebaseio.com');
-
-    $scope.authObj = $firebaseAuth(ref);
+  .controller('RegisterCtrl', function ($scope, $location, Authentication) {
 
     $scope.register = function () {
       console.log($scope.user.email);
