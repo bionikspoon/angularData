@@ -42,12 +42,7 @@ angular.module('angularDataApp')
               email: user.email
             };
             firebaseUsers[registeredUser.uid] = userInfo;
-            firebaseUsers.$save(registeredUser.uid)
-
-              .then(function (ref) {
-                console.log(ref);
-
-              });
+            firebaseUsers.$save(registeredUser.uid);
 
           });
       }
