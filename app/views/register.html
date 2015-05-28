@@ -6,7 +6,11 @@
 
     <p>To access site features.</p>
 
-    <input type="firstName"
+    <p class="error formerror"
+       ng-show="message">
+      {{ message }}</p>
+
+    <input type="text"
            name="firstName"
            placeholder="First Name"
            autofocus
@@ -17,7 +21,7 @@
        ng-show="registerForm.firstName.$invalid && registerForm.email.$touched ">
       First Name is required. </p>
 
-    <input type="lastName"
+    <input type="text"
            name="lastName"
            placeholder="Last Name"
            autofocus

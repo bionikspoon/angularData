@@ -14,6 +14,17 @@ angular
   .controller('RegisterCtrl', function ($scope, $location, Authentication) {
 
     $scope.register = function () {
-      $location.path('/meetings');
+      Authentication.register($scope.user)
+
+        .then(function (user) {
+          Authentication.login($scope.user);
+          $location.path('/meetings');
+        })
+
+        .catch(function (error) {
+          $scope.message = error.toString();
+          console.error('Registration failed:', error);
+        });
+
     };
   });

@@ -23,6 +23,12 @@ angular.module('angularDataApp')
 
       logout: function () {
         return authObj.$unauth();
+      },
+
+      register: function (user) {
+        return authObj.$createUser({
+          email: user.email, password: user.password
+        });
       }
 
 
