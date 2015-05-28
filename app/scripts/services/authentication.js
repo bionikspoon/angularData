@@ -45,7 +45,9 @@ angular.module('angularDataApp')
             firebaseUsers.$save(registeredUser.uid);
 
           });
-      }
+      },
+
+      authObj: authObj
 
     };
   });

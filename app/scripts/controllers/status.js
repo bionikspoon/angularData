@@ -8,23 +8,27 @@
  * Controller of the angularDataApp
  */
 angular.module('angularDataApp').controller('StatusCtrl',
-  function ($scope, $rootScope, $firebaseAuth, Authentication, FIREBASE_URL,
-    $location) {
+  function ($scope, $rootScope, Authentication, $location, FIREBASE_URL,
+    $firebaseObject) {
 
     $scope.logout = function () {
-      $scope.userEmail = null;
       Authentication.logout();
-        $location.path('/login');
-
+      $location.path('/login');
 
     };
 
-    var ref = new Firebase(FIREBASE_URL);
-    $rootScope.authObj = $firebaseAuth(ref);
+    Authentication.authObj.$onAuth(function (authUser) {
+      if (authUser) {
+        var ref = new Firebase(FIREBASE_URL + '/users/' + authUser.uid);
+        var user = $firebaseObject(ref);
 
-    $rootScope.authObj.$onAuth(function (authData) {
-      if (authData) {
-        $scope.userEmail = authData.password.email;
+        user.$loaded()
+
+          .then(function () {
+            $rootScope.currentUser = user;
+          });
+      } else {
+        $rootScope.currentUser = null;
       }
     });
   });

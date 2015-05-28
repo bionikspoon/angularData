@@ -33,13 +33,12 @@
 <div class="page">
   <div class="userinfo"
        ng-controller="StatusCtrl"
-       ng-show="userEmail">
-    <span class="user">Hi {{ userEmail }}</span>
+       ng-show="currentUser">
+    <span class="user">Hi {{ currentUser.firstName }}</span>
     <a href ng-click="logout()">Logout</a>
   </div>
   <main class="cf"
         ng-view>
-
   </main>
 </div>
 <!--<div ng-view=""></div>-->
