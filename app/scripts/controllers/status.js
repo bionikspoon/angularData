@@ -12,9 +12,11 @@ angular.module('angularDataApp').controller('StatusCtrl',
     $location) {
 
     $scope.logout = function () {
-      Authentication.logout();
-      $location.path('/login');
       $scope.userEmail = null;
+      Authentication.logout();
+        $location.path('/login');
+
+
     };
 
     var ref = new Firebase(FIREBASE_URL);

@@ -25,5 +25,5 @@ angular.module('angularDataApp')
           $scope.message = error.toString();
           console.error('Authentication failed:', error);
         });
-    }
+    };
   });

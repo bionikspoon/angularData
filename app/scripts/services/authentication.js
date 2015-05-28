@@ -10,7 +10,8 @@
 angular.module('angularDataApp')
 
   .factory('Authentication',
-  function ($firebase, $firebaseAuth, $location, FIREBASE_URL) {
+  function ($firebase, $firebaseAuth, $firebaseObject, $location,
+    FIREBASE_URL) {
     var ref = new Firebase(FIREBASE_URL);
     var authObj = $firebaseAuth(ref);
 
@@ -28,9 +29,28 @@ angular.module('angularDataApp')
       register: function (user) {
         return authObj.$createUser({
           email: user.email, password: user.password
-        });
-      }
+        })
 
+          .then(function (registeredUser) {
+            var ref = new Firebase(FIREBASE_URL + '/users');
+            var firebaseUsers = $firebaseObject(ref);
+            var userInfo = {
+              date: Firebase.ServerValue.TIMESTAMP,
+              registeredUser: registeredUser.uid,
+              firstName: user.firstName,
+              lastName: user.lastName,
+              email: user.email
+            };
+            firebaseUsers[registeredUser.uid] = userInfo;
+            firebaseUsers.$save(registeredUser.uid)
+
+              .then(function (ref) {
+                console.log(ref);
+
+              });
+
+          });
+      }
 
     };
   });
