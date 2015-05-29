@@ -4,7 +4,7 @@
       <a ng-href="#/">angularData</a>
     </li>
     <li><a ng-href="#/meetings"
-           ng-show="currentUser">Meetings ({{ howManyMeetings }})</a></li>
+           ng-show="currentUser">Meetings <span ng-if="howManyMeetings>0">({{ howManyMeetings }})</span></a></li>
     <li><a ng-href="#/login"
            ng-hide="currentUser">Login</a></li>
     <li><a ng-href="#/register"

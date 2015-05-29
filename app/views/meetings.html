@@ -9,7 +9,8 @@
                  ng-hide="currentUser">register</a> or <a ng-href="#/login">Login</a>.
     </p>
   </div>
-  <div ng-show="signedIn()" class="displaymeetings">
+  <div ng-show="signedIn()"
+       class="displaymeetings">
     <h1>Add Meetings</h1>
 
     <form class="formgroup addmeeting cf"
@@ -29,7 +30,7 @@
       </button>
 
     </form>
-    <h2>Your Meetings</h2>
+    <h2 ng-if="howManyMeetings>0">Your Meetings</h2>
 
     <div class="meeting"
          ng-repeat="(key, meeting) in meetings">

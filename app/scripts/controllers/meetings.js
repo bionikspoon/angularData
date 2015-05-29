@@ -8,28 +8,33 @@
  * Controller of the angularDataApp
  */
 angular.module('angularDataApp').controller('MeetingsCtrl',
-  function ($scope, $rootScope, $firebaseArray, $firebaseObject, FIREBASE_URL) {
+  function ($scope, $rootScope, $firebaseArray, $firebaseObject, FIREBASE_URL,
+    Authentication) {
 
-    var ref = new Firebase(FIREBASE_URL + '/meetings');
-    $scope.meetings = $firebaseArray(ref);
-    //$scope.meetingsObj = $firebaseObject(ref);
+    var authData = Authentication.authObj.$getAuth();
 
-    $scope.meetings.$watch(function (event) {
-      $rootScope.howManyMeetings = $scope.meetings.length;
-    });
+    if (authData) {
+      var ref = new Firebase(FIREBASE_URL + '/users/' + authData.uid +
+        '/meetings');
+      $scope.meetings = $firebaseArray(ref);
 
-    $scope.addMeeting = function () {
-      $scope.meetings.$add({
-        name: $scope.meetingName, date: Firebase.ServerValue.TIMESTAMP
-      })
+      $scope.meetings.$watch(function (event) {
+        $rootScope.howManyMeetings = $scope.meetings.length;
+      });
 
-        .then(function () {
-          $scope.meetingName = '';
-        });
-    };
+      $scope.addMeeting = function () {
+        $scope.meetings.$add({
+          name: $scope.meetingName, date: Firebase.ServerValue.TIMESTAMP
+        })
 
-    $scope.deleteMeeting = function (key) {
-      $scope.meetings.$remove(key);
-    };
+          .then(function () {
+            $scope.meetingName = '';
+          });
+      };
+
+      $scope.deleteMeeting = function (key) {
+        $scope.meetings.$remove(key);
+      };
+    }
 
   });

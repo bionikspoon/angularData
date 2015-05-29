@@ -15,15 +15,11 @@ angular.module('angularDataApp')
 
       Authentication.login($scope.user)
 
-        .then(function (user) {
-          console.log(user);
-
+        .then(function (userData) {
           $location.path('/meetings');
-        })
-
-        .catch(function (error) {
+        }, function (error) {
           $scope.message = error.toString();
-          console.error('Authentication failed:', error);
         });
+
     };
   });

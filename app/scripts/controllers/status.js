@@ -16,7 +16,7 @@ angular.module('angularDataApp').controller('StatusCtrl',
 
     };
 
-    Authentication.authObj.$onAuth(function (authUser) {
+/*    Authentication.authObj.$onAuth(function (authUser) {
       if (authUser) {
         Authentication.authUserObj(authUser.uid).$loaded()
 
@@ -27,5 +27,5 @@ angular.module('angularDataApp').controller('StatusCtrl',
       } else {
         $rootScope.currentUser = null;
       }
-    });
+    });*/
   });
