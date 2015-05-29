@@ -8,8 +8,7 @@
  * Controller of the angularDataApp
  */
 angular.module('angularDataApp').controller('MeetingsCtrl',
-  function ($scope, $rootScope, $firebaseArray, $firebaseObject, FIREBASE_URL,
-    Authentication) {
+  function ($scope, $rootScope, $firebaseArray, FIREBASE_URL, Authentication) {
 
     var authData = Authentication.authObj.$getAuth();
 
@@ -18,7 +17,7 @@ angular.module('angularDataApp').controller('MeetingsCtrl',
         '/meetings');
       $scope.meetings = $firebaseArray(ref);
 
-      $scope.meetings.$watch(function (event) {
+      $scope.meetings.$watch(function () {
         $rootScope.howManyMeetings = $scope.meetings.length;
       });
 

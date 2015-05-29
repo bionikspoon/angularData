@@ -16,7 +16,7 @@ angular
     $scope.register = function () {
       Authentication.register($scope.user)
 
-        .then(function (user) {
+        .then(function () {
           Authentication.login($scope.user);
           $location.path('/meetings');
         })
