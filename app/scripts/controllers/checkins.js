@@ -8,7 +8,8 @@
  * Controller of the angularDataApp
  */
 angular.module('angularDataApp').controller('CheckinsCtrl',
-  function ($scope, $routeParams, $location, $firebaseArray, FIREBASE_URL) {
+  function ($scope, $routeParams, $location, $firebaseArray, $firebaseObject,
+    FIREBASE_URL) {
 
     $scope.whichMeeting = $routeParams.meetingId;
     $scope.whichUser = $routeParams.userId;
@@ -63,5 +64,28 @@ angular.module('angularDataApp').controller('CheckinsCtrl',
       } else {
         myItem.userState = 'expanded';
       }
+    };
+
+    $scope.giveLove = function (myItem, myGift) {
+      var meeting = meetingsList[$scope.whichMeeting];
+      var loveRef = meetingsRef.child(meeting.$id + '/checkins/' + myItem.$id +
+        '/awards');
+      var awardsList = $firebaseArray(loveRef);
+
+      var myData = {
+        name: myGift, date: Firebase.ServerValue.TIMESTAMP
+      };
+
+      awardsList.$add(myData);
+    };
+
+    $scope.deleteLove = function (checkinId, award) {
+
+      var meeting = meetingsList[$scope.whichMeeting];
+      var awardRef = meetingsRef.child(meeting.$id + '/checkins/' + checkinId+
+        '/awards/' + award);
+
+      var awardObj = $firebaseObject(awardRef);
+      awardObj.$remove();
     };
   });
