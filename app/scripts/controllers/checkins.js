@@ -13,15 +13,23 @@ angular.module('angularDataApp').controller('CheckinsCtrl',
     $scope.whichMeeting = $routeParams.meetingId;
     $scope.whichUser = $routeParams.userId;
 
-    var ref = new Firebase(FIREBASE_URL + '/users/' + $scope.whichUser +
-      '/meetings/' + $scope.whichMeeting + '/checkins');
+    var meetingsRef = new Firebase(FIREBASE_URL + '/users/' + $scope.whichUser +
+      '/meetings');
+    var meetingsList = $firebaseArray(meetingsRef);
 
-    var checkinsList = $firebaseArray(ref);
-    $scope.checkins = checkinsList;
+    meetingsList.$loaded().then(function (meetingsList) {
+      var meeting = meetingsList[$scope.whichMeeting];
+      var checkinsRef = meetingsRef.child(meeting.$id + '/checkins');
+      var checkins = $firebaseArray(checkinsRef);
+
+      checkins.$loaded().then(function (checkins) {
+        $scope.checkins = checkins;
+      });
+    });
 
     $scope.addCheckin = function () {
-      var checkinsObj = $firebaseArray(ref);
-      checkinsObj.$add({
+
+      $scope.checkins.$add({
         firstName: $scope.user.firstName,
         lastName: $scope.user.lastName,
         email: $scope.user.email,
@@ -30,9 +38,12 @@ angular.module('angularDataApp').controller('CheckinsCtrl',
 
         .then(function () {
           $location.path('/checkins/' + $scope.whichUser + '/' +
-            $scope.whichMeeting + '/checkinslist')
+            $scope.whichMeeting + '/checkinslist');
 
         });
     };
-
+    $scope.deleteCheckin = function (id) {
+      var record = meetingsList.$getRecord(id);
+      meetingsList.$remove(record);
+    };
   });
