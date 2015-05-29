@@ -8,11 +8,36 @@
     <input type="text"
            ng-model="query"
            placeholder="Search for users." />
+
+    <div class="formgroup cf">
+      <span class="label">by: </span>
+      <select ng-model="order">
+        <option value="firstName">First Name</option>
+        <option value="lastName">Last Name</option>
+        <option value="date">Date</option>
+      </select>
+    </div>
+
+    <div class="formgroup cf">
+      <input type="radio"
+             id="dirAscending"
+             ng-model="direction"
+             name="direction"
+             value="" />
+      <label for="dirAscending">asc</label>
+      <input type="radio"
+             id="dirDescending"
+             ng-model="direction"
+             name="direction"
+             value="reverse" />
+      <label for="dirDescending">desc</label>
+    </div>
+
   </div>
 
 
   <ul class="userlist cf">
-    <li ng-repeat="checkin in checkins | filter: query">
+    <li ng-repeat="checkin in checkins | orderBy: order:direction | filter: query">
       <div class="checkin">
         <div class="buttons">
 

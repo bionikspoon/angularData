@@ -12,6 +12,8 @@ angular.module('angularDataApp').controller('CheckinsCtrl',
 
     $scope.whichMeeting = $routeParams.meetingId;
     $scope.whichUser = $routeParams.userId;
+    $scope.order = "firstName";
+    $scope.direction = "";
 
     var meetingsRef = new Firebase(FIREBASE_URL + '/users/' + $scope.whichUser +
       '/meetings');
