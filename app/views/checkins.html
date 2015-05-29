@@ -1,0 +1,53 @@
+<section class="register">
+  <form name="checkinForm"
+        novalidate
+        ng-submit="addCheckin()">
+    <h1>Check-in</h1>
+
+    <p>Fill out this form to check-in to your meeting or go
+      <a ng-href="#/meetings">back to meetings.</a></p>
+
+    <p class="error formerror"
+       ng-show="message">
+      {{ message }}</p>
+
+    <input type="text"
+           name="firstName"
+           placeholder="First Name"
+           autofocus
+           ng-model="user.firstName"
+           ng-required="true" />
+
+    <p class="error validationerror"
+       ng-show="checkinForm.firstName.$invalid && checkinForm.email.$touched ">
+      First Name is required. </p>
+
+    <input type="text"
+           name="lastName"
+           placeholder="Last Name"
+           autofocus
+           ng-model="user.lastName"
+           ng-required="true" />
+
+    <p class="error validationerror"
+       ng-show="checkinForm.lastName.$invalid && checkinForm.email.$touched ">
+      Last Name is required. </p>
+
+    <input type="email"
+           name="email"
+           placeholder="Email"
+           autofocus
+           ng-model="user.email"
+           ng-required="true" />
+
+    <p class="error validationerror"
+       ng-show="checkinForm.email.$invalid && checkinForm.email.$touched ">
+      Must be a valid email. </p>
+
+    <button type="submit"
+            class="btn"
+            ng-disabled="checkinForm.$invalid">
+      Check-in
+    </button>
+  </form>
+</section>

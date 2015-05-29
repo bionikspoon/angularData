@@ -35,6 +35,10 @@ angular.module('angularDataApp', [
         templateUrl: 'views/meetings.html', controller: 'MeetingsCtrl'
       })
 
+      .when('/checkins/:userId/:meetingId', {
+        templateUrl: 'views/checkins.html', controller: 'CheckinsCtrl'
+      })
+
       .otherwise({
         redirectTo: '/meetings'
       });

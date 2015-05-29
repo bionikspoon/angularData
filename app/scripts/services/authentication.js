@@ -18,45 +18,26 @@ angular.module('angularDataApp')
     var factoryObject = {
 
       login: function (user) {
+        var authData = authObj.$getAuth();
+        if (authData) {
+          var userRef = new Firebase(FIREBASE_URL + '/users/' + authData.uid);
+          var userObj = $firebaseObject(userRef);
+
+          userObj.$loaded()
+
+            .then(function () {
+              $rootScope.currentUser = userObj;
+            })
+
+            .catch(function (error) {
+              console.error('User Object not found:', error);
+            });
+        }
+
         return authObj.$authWithPassword({
           email: user.email, password: user.password
-        })
+        });
 
-          .then(function (authData) {
-            var userRef = new Firebase(FIREBASE_URL + '/users/' + authData.uid);
-            var userObj = $firebaseObject(userRef);
-
-            userObj.$loaded()
-
-              .then(function () {
-                $rootScope.currentUser = userObj;
-              })
-
-              .catch(function (error) {
-
-                console.error('User Object not found:', error);
-
-              });
-
-          })
-
-          .catch(function (error) {
-            console.error('Authentication failed:', error);
-          });
-        /*        var userRef = new Firebase(FIREBASE_URL + '/users/' + user.uid);
-         var userObj = $firebaseObject(userRef);
-
-         userObj.$loaded()
-
-         .then(function () {
-         $rootScope.currentUser = userObj;
-         console.log('$rootScope.currentUser', $rootScope.currentUser);
-         console.log('user.uid', user.uid);
-         });
-
-         return authObj.$authWithPassword({
-         email: user.email, password: user.password
-         });*/
       },
 
       logout: function () {
@@ -87,12 +68,7 @@ angular.module('angularDataApp')
       authObj: authObj,
 
       signedIn: function () {
-        return $rootScope.currentUser != null;
-      },
-
-      authUserObj: function (uid) { // TODO remove this
-        var userRef = new Firebase(FIREBASE_URL + '/users/' + uid);
-        return $firebaseObject(userRef);
+        return authObj.$getAuth() !== null;
       }
     };
 

@@ -15,7 +15,7 @@ angular.module('angularDataApp')
 
       Authentication.login($scope.user)
 
-        .then(function (userData) {
+        .then(function () {
           $location.path('/meetings');
         }, function (error) {
           $scope.message = error.toString();
