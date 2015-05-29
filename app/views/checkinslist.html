@@ -33,17 +33,33 @@
       <label for="dirDescending">desc</label>
     </div>
 
+    <div class="buttons cf"
+         ng-show="signedIn()">
+      <button ng-hide="recordId"
+              class="btn btn-pick"
+              ng-click="pickRandom()">Pick Random
+      </button>
+      <button ng-show="recordId"
+              class="btn btn-reset"
+              ng-click="recordId=''">Reset
+      </button>
+    </div>
+
+
   </div>
 
 
   <ul class="userlist cf">
-    <li ng-repeat="checkin in checkins | orderBy: order:direction | filter: query">
+    <li ng-repeat="checkin in checkins
+      | orderBy: order:direction
+      | filter: {$id: recordId, $:query}">
       <div class="checkin">
         <div class="buttons">
 
 
           <button class="btn btn-delete tooltip"
-                  ng-click="deleteCheckin(checkin.$id)">
+                  ng-click="deleteCheckin(checkin.$id)"
+                  ng-show="signedIn()">
             <span>Delete this checkin.</span>
           </button>
         </div>

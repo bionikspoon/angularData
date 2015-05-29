@@ -12,8 +12,8 @@ angular.module('angularDataApp').controller('CheckinsCtrl',
 
     $scope.whichMeeting = $routeParams.meetingId;
     $scope.whichUser = $routeParams.userId;
-    $scope.order = "firstName";
-    $scope.direction = "";
+    $scope.order = 'firstName';
+    $scope.direction = '';
 
     var meetingsRef = new Firebase(FIREBASE_URL + '/users/' + $scope.whichUser +
       '/meetings');
@@ -44,8 +44,14 @@ angular.module('angularDataApp').controller('CheckinsCtrl',
 
         });
     };
+
     $scope.deleteCheckin = function (id) {
       var record = meetingsList.$getRecord(id);
       meetingsList.$remove(record);
+    };
+
+    $scope.pickRandom = function () {
+      var whichCheckin = Math.floor(Math.random() * $scope.checkins.length);
+      $scope.recordId = $scope.checkins.$keyAt(whichCheckin);
     };
   });
