@@ -1,6 +1,6 @@
 'use strict';
 
-describe('Directive: confirm', function () {
+describe('Directive: confirmationNeeded', function () {
 
   // load the directive's module
   beforeEach(module('angularDataApp'));
@@ -13,8 +13,8 @@ describe('Directive: confirm', function () {
   }));
 
   it('should make hidden element visible', inject(function ($compile) {
-    element = angular.element('<confirm></confirm>');
+    element = angular.element('<confirmation-needed></confirmation-needed>');
     element = $compile(element)(scope);
-    expect(element.text()).toBe('this is the confirm directive');
+    expect(element.text()).toBe('this is the confirmationNeeded directive');
   }));
 });

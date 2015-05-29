@@ -2,17 +2,17 @@
 
 /**
  * @ngdoc directive
- * @name angularDataApp.directive:confirm
+ * @name angularDataApp.directive:confirmationNeeded
  * @description
- * # confirm
+ * # confirmationNeeded
  */
 angular.module('angularDataApp')
-  .directive('confirm', function () {
+  .directive('confirmationNeeded', function () {
     return {
       template: '<div></div>',
       restrict: 'E',
       link: function postLink(scope, element, attrs) {
-        element.text('this is the confirm directive');
+        element.text('this is the confirmationNeeded directive');
       }
     };
   });
