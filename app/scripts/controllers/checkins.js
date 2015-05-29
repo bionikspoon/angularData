@@ -47,8 +47,12 @@ angular.module('angularDataApp').controller('CheckinsCtrl',
     };
 
     $scope.deleteCheckin = function (id) {
-      var record = meetingsList.$getRecord(id);
-      meetingsList.$remove(record);
+      var meeting = meetingsList[$scope.whichMeeting];
+      var checkinRef = meetingsRef.child(meeting.$id + '/checkins/' + id);
+
+      var checkinObj = $firebaseObject(checkinRef);
+      checkinObj.$remove();
+
     };
 
     $scope.pickRandom = function () {
@@ -82,7 +86,7 @@ angular.module('angularDataApp').controller('CheckinsCtrl',
     $scope.deleteLove = function (checkinId, award) {
 
       var meeting = meetingsList[$scope.whichMeeting];
-      var awardRef = meetingsRef.child(meeting.$id + '/checkins/' + checkinId+
+      var awardRef = meetingsRef.child(meeting.$id + '/checkins/' + checkinId +
         '/awards/' + award);
 
       var awardObj = $firebaseObject(awardRef);

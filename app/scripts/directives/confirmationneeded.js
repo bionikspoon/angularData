@@ -6,13 +6,23 @@
  * @description
  * # confirmationNeeded
  */
-angular.module('angularDataApp')
+angular
+
+  .module('angularDataApp')
+
   .directive('confirmationNeeded', function () {
     return {
-      template: '<div></div>',
-      restrict: 'E',
+      priority: 1,
+      terminal: true,
       link: function postLink(scope, element, attrs) {
-        element.text('this is the confirmationNeeded directive');
+        var message = attrs.confirmationNeeded ||
+          'Are you sure you want to delete?';
+        var clickAction = attrs.ngClick;
+        element.bind('click', function () {
+          if (window.confirm(message)) {
+            scope.$eval(clickAction);
+          }
+        });
       }
     };
   });
