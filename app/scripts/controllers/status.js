@@ -8,8 +8,8 @@
  * Controller of the angularDataApp
  */
 angular.module('angularDataApp').controller('StatusCtrl',
-  function ($scope, $rootScope, Authentication, $location, FIREBASE_URL,
-    $firebaseObject) {
+  function ($scope, $rootScope, Authentication, $location,
+    $firebaseObject, FIREBASE) {
 
     $scope.logout = function () {
       Authentication.logout();
@@ -19,7 +19,7 @@ angular.module('angularDataApp').controller('StatusCtrl',
 
     Authentication.authObj.$onAuth(function (authUser) {
       if (authUser) {
-        var userRef = new Firebase(FIREBASE_URL + '/users/' + authUser.uid);
+        var userRef = FIREBASE.child('/users/' + authUser.uid);
         var user = $firebaseObject(userRef);
 
         user.$loaded()

@@ -10,16 +10,16 @@
 angular.module('angularDataApp')
 
   .factory('Authentication',
-  function ($rootScope, $firebaseAuth, $firebaseObject, FIREBASE_URL) {
-    var ref = new Firebase(FIREBASE_URL);
-    var authObj = $firebaseAuth(ref);
+  function ($rootScope, $firebaseAuth, $firebaseObject, FIREBASE) {
+
+    var authObj = $firebaseAuth(FIREBASE);
 
     var factoryObject = {
 
       login: function (user) {
         var authData = authObj.$getAuth();
         if (authData) {
-          var userRef = new Firebase(FIREBASE_URL + '/users/' + authData.uid);
+          var userRef = FIREBASE.child('/users/' + authData.uid);
           var userObj = $firebaseObject(userRef);
 
           userObj.$loaded()
@@ -49,8 +49,7 @@ angular.module('angularDataApp')
         })
 
           .then(function (registeredUser) {
-            var userRef = new Firebase(FIREBASE_URL + '/users/' +
-              registeredUser.uid);
+            var userRef = FIREBASE.child('/users/' + registeredUser.uid);
             var firebaseUser = $firebaseObject(userRef);
 
             firebaseUser.date = Firebase.ServerValue.TIMESTAMP;

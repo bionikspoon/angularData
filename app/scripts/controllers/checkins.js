@@ -9,14 +9,14 @@
  */
 angular.module('angularDataApp').controller('CheckinsCtrl',
   function ($scope, $routeParams, $location, $firebaseArray, $firebaseObject,
-    FIREBASE_URL) {
+    FIREBASE) {
 
     $scope.whichMeeting = $routeParams.meetingId;
     $scope.whichUser = $routeParams.userId;
     $scope.order = 'firstName';
     $scope.direction = '';
 
-    var meetingsRef = new Firebase(FIREBASE_URL + '/users/' + $scope.whichUser +
+    var meetingsRef = FIREBASE.child('/users/' + $scope.whichUser +
       '/meetings');
     var meetingsList = $firebaseArray(meetingsRef);
 
