@@ -8,13 +8,16 @@
  * Controller of the angularDataApp
  */
 angular.module('angularDataApp').controller('CheckinsCtrl',
-  function ($scope, $routeParams, $firebaseArray, FIREBASE_URL) {
+  function ($scope, $routeParams, $location, $firebaseArray, FIREBASE_URL) {
 
     $scope.whichMeeting = $routeParams.meetingId;
     $scope.whichUser = $routeParams.userId;
 
     var ref = new Firebase(FIREBASE_URL + '/users/' + $scope.whichUser +
       '/meetings/' + $scope.whichMeeting + '/checkins');
+
+    var checkinsList = $firebaseArray(ref);
+    $scope.checkins = checkinsList;
 
     $scope.addCheckin = function () {
       var checkinsObj = $firebaseArray(ref);
@@ -26,6 +29,8 @@ angular.module('angularDataApp').controller('CheckinsCtrl',
       })
 
         .then(function () {
+          $location.path('/checkins/' + $scope.whichUser + '/' +
+            $scope.whichMeeting + '/checkinslist')
 
         });
     };
