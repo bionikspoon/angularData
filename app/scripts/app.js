@@ -40,7 +40,7 @@ angular.module('angularDataApp', [
       })
 
       .when('/checkins/:userId/:meetingId/checkinslist', {
-        templateUrl: 'views/checkinslist.html', controller: 'CheckinsCtrl'
+        templateUrl: 'views/checkinslist.html', controller: 'CheckinsListCtrl'
       })
 
       .otherwise({

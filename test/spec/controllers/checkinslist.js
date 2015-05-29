@@ -1,17 +1,17 @@
 'use strict';
 
-describe('Controller: CheckinslistCtrl', function () {
+describe('Controller: CheckinsListCtrl', function () {
 
   // load the controller's module
   beforeEach(module('angularDataApp'));
 
-  var CheckinslistCtrl,
+  var CheckinsListCtrl,
     scope;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
-    CheckinslistCtrl = $controller('CheckinslistCtrl', {
+    CheckinsListCtrl = $controller('CheckinsListCtrl', {
       $scope: scope
     });
   }));
