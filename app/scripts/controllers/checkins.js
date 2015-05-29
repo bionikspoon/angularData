@@ -54,4 +54,14 @@ angular.module('angularDataApp').controller('CheckinsCtrl',
       var whichCheckin = Math.floor(Math.random() * $scope.checkins.length);
       $scope.recordId = $scope.checkins.$keyAt(whichCheckin);
     };
+
+    $scope.showLove = function (myItem) {
+      myItem.show = !myItem.show;
+
+      if (myItem.userState === 'expanded') {
+        myItem.userState = '';
+      } else {
+        myItem.userState = 'expanded';
+      }
+    };
   });
