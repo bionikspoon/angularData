@@ -8,32 +8,28 @@
  * Controller of the angularDataApp
  */
 angular.module('angularDataApp').controller('MeetingsCtrl',
-  function ($scope, $rootScope, $firebaseArray, FIREBASE, Authentication) {
+  function ($scope, $rootScope, $firebaseArray, FIREBASE,
+    currentAuth) {
 
-    var authData = Authentication.authObj.$getAuth();
+    var ref = FIREBASE.child('/users/' + currentAuth.uid + '/meetings');
+    $scope.meetings = $firebaseArray(ref);
 
-    if (authData) {
-      var ref = FIREBASE.child('/users/' + authData.uid +
-        '/meetings');
-      $scope.meetings = $firebaseArray(ref);
+    $scope.meetings.$watch(function () {
+      $rootScope.howManyMeetings = $scope.meetings.length;
+    });
 
-      $scope.meetings.$watch(function () {
-        $rootScope.howManyMeetings = $scope.meetings.length;
-      });
+    $scope.addMeeting = function () {
+      $scope.meetings.$add({
+        name: $scope.meetingName, date: Firebase.ServerValue.TIMESTAMP
+      })
 
-      $scope.addMeeting = function () {
-        $scope.meetings.$add({
-          name: $scope.meetingName, date: Firebase.ServerValue.TIMESTAMP
-        })
+        .then(function () {
+          $scope.meetingName = '';
+        });
+    };
 
-          .then(function () {
-            $scope.meetingName = '';
-          });
-      };
-
-      $scope.deleteMeeting = function (key) {
-        $scope.meetings.$remove(key);
-      };
-    }
+    $scope.deleteMeeting = function (key) {
+      $scope.meetings.$remove(key);
+    };
 
   });

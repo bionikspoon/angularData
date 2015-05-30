@@ -9,17 +9,22 @@
  */
 angular.module('angularDataApp')
 
-  .controller('LoginCtrl', function ($scope, $location, Authentication) {
+  .controller('LoginCtrl',
+  function ($scope, $location, Authentication, currentAuth) {
 
-    $scope.login = function () {
+    if (currentAuth) {
+      $location.path('/meetings');
+    } else {
+      $scope.login = function () {
 
-      Authentication.login($scope.user)
+        Authentication.login($scope.user)
 
-        .then(function () {
-          $location.path('/meetings');
-        }, function (error) {
-          $scope.message = error.toString();
-        });
+          .then(function () {
+            $location.path('/meetings');
+          }, function (error) {
+            $scope.message = error.toString();
+          });
 
-    };
+      };
+    }
   });

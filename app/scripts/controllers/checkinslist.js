@@ -8,7 +8,7 @@
  * Controller of the angularDataApp
  */
 angular.module('angularDataApp').controller('CheckinsListCtrl',
-  function ($scope, $routeParams, $location, $firebaseArray, $firebaseObject,
+  function ($scope, $routeParams,  $firebaseArray, $firebaseObject,
     FIREBASE) {
     $scope.whichMeeting = $routeParams.meetingId;
     $scope.whichUser = $routeParams.userId;

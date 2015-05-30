@@ -11,20 +11,26 @@ angular
 
   .module('angularDataApp')
 
-  .controller('RegisterCtrl', function ($scope, $location, Authentication) {
+  .controller('RegisterCtrl',
+  function ($scope, $location, Authentication, currentAuth) {
 
-    $scope.register = function () {
-      Authentication.register($scope.user)
+    if (currentAuth) {
+      $location.path('/meetings');
+    } else {
+      $scope.register = function () {
+        Authentication.register($scope.user)
 
-        .then(function () {
-          Authentication.login($scope.user);
-          $location.path('/meetings');
-        })
+          .then(function () {
+            Authentication.login($scope.user);
+            $location.path('/meetings');
+          })
 
-        .catch(function (error) {
-          $scope.message = error.toString();
-          console.error('Registration failed:', error);
-        });
+          .catch(function (error) {
+            $scope.message = error.toString();
+            console.error('Registration failed:', error);
+          });
 
-    };
+      };
+    }
+
   });

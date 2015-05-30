@@ -14,29 +14,18 @@ angular.module('angularDataApp')
 
     var authObj = $firebaseAuth(FIREBASE);
 
+    var userObj = function (userId) {
+      var userRef = FIREBASE.child('/users/' + userId);
+      return $firebaseObject(userRef);
+    };
+
+
     var factoryObject = {
 
       login: function (user) {
-        var authData = authObj.$getAuth();
-        if (authData) {
-          var userRef = FIREBASE.child('/users/' + authData.uid);
-          var userObj = $firebaseObject(userRef);
-
-          userObj.$loaded()
-
-            .then(function () {
-              $rootScope.currentUser = userObj;
-            })
-
-            .catch(function (error) {
-              console.error('User Object not found:', error);
-            });
-        }
-
         return authObj.$authWithPassword({
           email: user.email, password: user.password
         });
-
       },
 
       logout: function () {
@@ -49,8 +38,7 @@ angular.module('angularDataApp')
         })
 
           .then(function (registeredUser) {
-            var userRef = FIREBASE.child('/users/' + registeredUser.uid);
-            var firebaseUser = $firebaseObject(userRef);
+            var firebaseUser = userObj(registeredUser.uid);
 
             firebaseUser.date = Firebase.ServerValue.TIMESTAMP;
             firebaseUser.registeredUser = registeredUser.uid;
@@ -59,11 +47,12 @@ angular.module('angularDataApp')
             firebaseUser.email = user.email;
 
             firebaseUser.$save(registeredUser.uid);
-
           });
       },
 
       authObj: authObj,
+
+      userObj: userObj,
 
       signedIn: function () {
         return authObj.$getAuth() !== null;
