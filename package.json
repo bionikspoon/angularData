@@ -2,9 +2,7 @@
   "name": "angulardata",
   "version": "0.0.0",
   "dependencies": {
-    "bower": "^1.4.1",
-    "express": "^4.12.4",
-    "grunt-cli": "^0.1.13"
+    "express": "^4.12.4"
   },
   "devDependencies": {
     "grunt": "^0.4.5",
@@ -40,8 +38,6 @@
   },
   "scripts": {
     "test": "grunt test",
-    "postinstall": "./node_modules/bower/bin/bower install",
-    "prestart": "grunt build",
     "start": "node server.js"
   },
   "description": "This project is generated with [yo angular generator](https://github.com/yeoman/generator-angular) version 0.11.1.",
