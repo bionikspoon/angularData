@@ -10,8 +10,7 @@
 }
 
 /* Import fonts */
-@import url("http://fonts.googleapis.com/css?family=Bree+Serif|Merriweather:400,300,700,900|Droid+Sans:400,700");
-
+@import url(http://fonts.googleapis.com/css?family=Merriweather:400,900,300,700|Bree+Serif);
 /* apply a natural box layout model to all elements, but allowing components to change */
 html {
   box-sizing: border-box;
@@ -100,7 +99,7 @@ html {
 }
 
 body {
-  font-family: Merriweather, serif;
+  font-family: 'Merriweather', serif;
   font-size: 1rem;
   line-height: 160%;
   *zoom: 1;
@@ -136,7 +135,7 @@ h1, h2, h3, h4, h5, h6 {
 
 a {
   color: #145266;
-  font-family: Bree Serif, serif;
+  font-family: 'Bree Serif', serif;
 }
 
 header {
@@ -294,7 +293,7 @@ p.error {
   border-radius: 20px;
   text-align: left;
   font-size: 1.1rem;
-  font-family: Bree Serif, serif;
+  font-family: 'Bree Serif', serif;
 
   h2 {
     color: #124E61;
@@ -463,11 +462,11 @@ nav {
     li {
       float: left;
       color: #145266;
-      font-family: Bree Serif, serif;
+      font-family: 'Bree Serif', serif;
       &.user {
         background-color: #D24244;
         color: #EFC94C;
-        font-family: Bree Serif, serif;
+        font-family: 'Bree Serif', serif;
         &.hello {
           margin-left: 60px;
           padding: 10px 15px;
@@ -489,7 +488,7 @@ nav {
 .userinfo {
   text-align: center;
   color: #E0E7AB;
-  font-family: Bree Serif, serif;
+  font-family: 'Bree Serif', serif;
   padding-bottom: 5px;
 
   a {
