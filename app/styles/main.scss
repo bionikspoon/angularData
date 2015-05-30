@@ -10,7 +10,7 @@
 }
 
 /* Import fonts */
-@import url(https://fonts.googleapis.com/css?family=Merriweather:400,900,300,700|Bree+Serif);
+@import url(https://fonts.googleapis.com/css?family=Merriweather:400,900,300,700|Bree+Serif|Droid+Sans:400,700);
 /* apply a natural box layout model to all elements, but allowing components to change */
 html {
   box-sizing: border-box;
@@ -78,6 +78,10 @@ a img {
 
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
   display: block;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 /* Base Styles */
@@ -215,6 +219,7 @@ p.error {
 
 /* Buttons */
 
+//noinspection CssOptimizeSimilarProperties,CssOverwrittenProperties
 .btn {
   display: inline-block;
   padding: 6px 12px;
@@ -228,10 +233,13 @@ p.error {
   cursor: pointer;
   border-radius: 4px;
   color: #FCF4DC;
-  background-size: 18px 18px;
   min-width: 28px;
   min-height: 28px;
-  background: #14566A no-repeat center center;
+  background: #C61C6F;
+  background-color: #14566A;
+  background-size: 18px 18px;
+  background-position: center center;
+  background-repeat: no-repeat;
   border: 2px solid white;
   user-select: none;
   .btn-left {
@@ -289,6 +297,7 @@ p.error {
   background: #EEE8D5;
   width: 100%;
   margin: 10px auto 0;
+
   padding: 20px 30px;
   border-radius: 20px;
   text-align: left;
@@ -317,6 +326,7 @@ p.error {
     border-radius: 10px;
     display: inline-block;
     margin-right: 15px;
+    -webkit-appearance: none;
   }
 
   label {
@@ -359,7 +369,6 @@ p.error {
 
 .userlist {
   width: 100%;
-
   opacity: .95;
   z-index: 10;
   margin: 20px auto 0;
@@ -375,6 +384,7 @@ p.error {
     padding: 8px;
     border-radius: 10px;
     margin-bottom: 10px;
+    transition: all 0.3s ease-out;
     &:hover {
       background-color: #EEE8D5;
     }
@@ -434,9 +444,11 @@ ul.awardslist {
       background-color: #F5974E;
     }
 
+    //noinspection CssOptimizeSimilarProperties
     .btn-delete {
+      background-color: transparent;
       background-size: 15px 15px;
-      background: transparent center 40%;
+      background-position: center 40%;
       margin: 0;
       border: none;
     }
@@ -509,10 +521,11 @@ nav {
       width: 100%;
     }
   }
+  //noinspection CssInvalidPropertyValue
   button {
     width: 60px;
     margin-left: 20px;
-    //vertical-align: center;
+    vertical-align: center;
   }
 }
 
