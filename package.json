@@ -2,8 +2,8 @@
   "name": "angulardata",
   "version": "0.0.0",
   "dependencies": {
+    "express": "^4.12.4"
   },
-  "repository": {},
   "devDependencies": {
     "grunt": "^0.4.5",
     "grunt-autoprefixer": "^3.0.0",
@@ -38,5 +38,26 @@
   },
   "scripts": {
     "test": "grunt test"
-  }
+  },
+  "description": "This project is generated with [yo angular generator](https://github.com/yeoman/generator-angular) version 0.11.1.",
+  "main": "dist/index.html",
+  "directories": {
+    "test": "test",
+    "start": "node server.js"
+  },
+  "keywords": [
+    "angular",
+    "firebase",
+    "meetings"
+  ],
+  "author": "Manu Phatak",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bionikspoon/angularData.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bionikspoon/angularData/issues"
+  },
+  "homepage": "https://github.com/bionikspoon/angularData#readme"
 }
