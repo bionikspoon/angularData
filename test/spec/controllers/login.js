@@ -12,7 +12,8 @@ describe('Controller: LoginCtrl', function () {
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
     LoginCtrl = $controller('LoginCtrl', {
-      $scope: scope
+      $scope: scope,
+      currentAuth: null
     });
   }));
 

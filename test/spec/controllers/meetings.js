@@ -12,7 +12,10 @@ describe('Controller: MeetingsCtrl', function () {
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
     MeetingsCtrl = $controller('MeetingsCtrl', {
-      $scope: scope
+      $scope: scope,
+      currentAuth: {
+        uid: '1'
+      }
     });
   }));
 

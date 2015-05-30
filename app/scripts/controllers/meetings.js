@@ -8,8 +8,7 @@
  * Controller of the angularDataApp
  */
 angular.module('angularDataApp').controller('MeetingsCtrl',
-  function ($scope, $rootScope, $firebaseArray, FIREBASE,
-    currentAuth) {
+  function ($scope, $rootScope, $firebaseArray, FIREBASE, currentAuth) {
 
     var ref = FIREBASE.child('/users/' + currentAuth.uid + '/meetings');
     $scope.meetings = $firebaseArray(ref);
