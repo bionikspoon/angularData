@@ -1,0 +1,7 @@
+<!doctype html> <html class="no-js" ng-app="angularDataApp"> <head> <meta charset="utf-8"> <title>Angular Data</title> <meta name="description" content=""> <meta name="viewport" content="width=device-width,user-scalable=no"> <!-- Place favicon.ico and apple-touch-icon.png in the root directory --> <link rel="stylesheet" href="styles/main.a94cc085.css">  <body> <!--[if lt IE 7]>
+<p class="browsehappy">
+  You are using an <strong>outdated</strong> browser.
+  Please <a href="http://browsehappy.com/">upgrade your
+                                           browser</a> to
+  improve your experience. </p>
+<![endif]--> <header> <nav class="cf" ng-include="'views/nav.html'" ng-controller="StatusCtrl" ng-cloak></nav> </header> <div class="page"> <div class="userinfo" ng-controller="StatusCtrl" ng-show="currentUser" ng-cloak> <span class="user">Hi {{ currentUser.firstName }}</span> <a href ng-click="logout()">Logout</a> </div> <main class="cf" ng-view ng-cloak></main> </div> <!--<div ng-view=""></div>--> <script src="scripts/vendor.020f8f44.js"></script> <script src="scripts/scripts.aeff747e.js"></script>  
